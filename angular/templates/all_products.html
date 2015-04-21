@@ -1,0 +1,26 @@
+<h1>{{string('all_products')}}</h1>
+
+<div class="form-group">
+    <label for="searchInput">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        {{string('search_all_products')}}
+    </label>
+    <input id="searchInput" type="text" class="form-control" ng-model="searchFilter"/>
+</div>
+
+<table class="table">
+    <tr>
+        <th>{{string('name')}}</th>
+        <th>{{string('manufacturer')}}</th>
+        <th>{{string('category')}}</th>
+    </tr>
+    <tr ng-repeat="product in products |filter: searchFilter">
+        <td>{{product.name}}</td>
+        <td>
+            <a href="/#/manufacturers/{{product.manufacturer}}">{{product.manufacturer}}</a>
+        </td>
+        <td>
+            <a href="/#/categories/{{product.category}}">{{product.category}}</a>
+        </td>
+    </tr>
+</table>

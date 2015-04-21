@@ -1,0 +1,13 @@
+<h1>New product</h1>
+
+<form ng-submit="save">
+    <div class="form-group">
+        <label for="nameInput">Name</label>
+        <input id="nameInput" type="text" class="form-control" placeholder="Name" ng-model="newProduct.name"/>
+    </div>
+    <div class="form-group">
+        <label for="categoryInput">Category</label>
+        <input id="categoryInput" type="text" class="form-control" placeholder="Category" ng-model="newProduct.category"/>
+    </div>
+    <button class="btn btn-primary">Save</button>
+</form>

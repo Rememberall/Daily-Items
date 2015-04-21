@@ -1,0 +1,78 @@
+{
+  "not_found": {
+    "no": "Ikke funnet",
+    "en": "Not found"
+  },
+  "go_home": {
+    "no": "Gå hjem",
+    "en": "Go home"
+  },
+  "name": {
+    "no": "Navn",
+    "en": "Name"
+  },
+  "manufacturer": {
+    "no": "Produsent",
+    "en": "Manufacturer"
+  },
+  "category": {
+    "no": "Kategori",
+    "en": "Category"
+  },
+  "save": {
+    "no": "Lagre",
+    "en": "Save"
+  },
+  "delete": {
+    "no": "Slett",
+    "en": "Delete"
+  },
+  "update": {
+    "no": "Oppdater",
+    "en": "Update"
+  },
+  "no_categories": {
+    "no": "Ingen kategorier",
+    "en": "No categories"
+  },
+  "search": {
+    "no": "Søk",
+    "en": "Search"
+  },
+  "all_products": {
+    "no": "Alle produkter",
+    "en": "All products"
+  },
+  "search_all_products": {
+    "no": "Søk i alle produkter",
+    "en": "Search all products"
+  },
+  "my_stuff": {
+    "no": "Mine ting",
+    "en": "My stuff"
+  },
+  "categories": {
+    "no": "Kategorier",
+    "en": "Categories"
+  },
+  "search_categories": {
+    "no": "Søk i kategorier",
+    "en": "Search categories"
+  },
+  "add_one": {
+    "no": "Legg til en ny",
+    "en": "Add one"
+  },
+  "new_category": {
+    "no": "Ny kategori",
+    "en": "New category"
+  },
+  "my_lists": {
+    "no": "Mine lister",
+    "en": "My lists"
+  },
+  "home": {
+    "no": "Hjem",
+    "en": "Home"
+  }
+}

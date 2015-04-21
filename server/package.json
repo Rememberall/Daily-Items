@@ -1,0 +1,6 @@
+{
+  "name": "remembrall-server",
+  "dependencies": {
+    "express": "^4.12.3"
+  }
+}

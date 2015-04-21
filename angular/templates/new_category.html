@@ -1,0 +1,9 @@
+<h1>{{string('new_category')}}</h1>
+
+<form ng-submit="save()">
+    <div class="form-group">
+        <label for="nameInput">{{string('name')}}</label>
+        <input id="nameInput" type="text" class="form-control" placeholder="{{string('name')}}" ng-model="newCategory.name"/>
+    </div>
+    <button class="btn btn-primary">{{string('save')}}</button>
+</form>

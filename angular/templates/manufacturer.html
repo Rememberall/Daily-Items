@@ -1,0 +1,7 @@
+<h1>Manufacturer {{manufacturer}}</h1>
+
+<ul ng-repeat="category in categories">
+    <li>{{category}}</li>
+</ul>
+
+<p ng-if="categories.length === 0">{{string('no_categories')}}!</p>
