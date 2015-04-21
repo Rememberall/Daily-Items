@@ -7,12 +7,18 @@
 
 <table class="table">
     <tr>
-        <th>Name</th>
-        <th>Action</th>
+        <th>{{string('name')}}</th>
+        <th>{{string('most_popular_products')}}</th>
+        <th></th>
     </tr>
     <tr ng-repeat="category in categories | filter: searchFilter">
         <td>
             <a href="/#/categories/{{category.name}}">{{category.name}}</a>
+        </td>
+        <td>
+            <ul class="list-inline" ng-repeat="product in category.products | limitTo: 5">
+                <li>{{product.name}}</li>
+            </ul>
         </td>
         <td>
             <button class="btn btn-danger" ng-click="remove(category._id)">{{string('remove')}}</button>

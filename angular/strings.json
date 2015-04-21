@@ -98,5 +98,9 @@
   "no_categories": {
     "no": "Ingen kategorier",
     "en": "No categories"
+  },
+  "most_popular_products": {
+    "no": "Mest populære produkter",
+    "en": "Most popular products"
   }
 }
