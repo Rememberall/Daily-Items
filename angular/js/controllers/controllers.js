@@ -45,14 +45,26 @@ app.controller('AllProductsController', function ($scope) {
     ];
 });
 
-app.controller('NewProductController', function ($scope, $routeParams) {
+app.controller('NewProductController', function ($scope, $routeParams, $location, ProductsService) {
     $scope.newProduct = {
         name: $routeParams.name,
         category: $routeParams.category
     };
 
     $scope.save = function () {
-        throw 'Not implemented';
+        ProductsService.save($scope.newProduct)
+            .success(function(product) {
+                $scope.newProduct = {};
+                $location.path('/categories/' + product.category);
+            });
+    };
+});
+
+app.service('ProductsService', function($http) {
+    var resource = '/api/products';
+
+    this.save = function(product) {
+        return $http.post(resource, product);
     };
 });
 
@@ -82,6 +94,10 @@ app.service('CategoriesService', function ($http) {
     this.remove = function (id) {
         return $http.delete(resource + '/' + id);
     };
+
+    this.get = function(name) {
+        return $http.get(resource + '/' + name);
+    };
 });
 
 app.controller('NewCategoryController', function ($scope, $routeParams, $location, CategoriesService) {
@@ -97,23 +113,11 @@ app.controller('NewCategoryController', function ($scope, $routeParams, $locatio
     };
 });
 
-app.controller('CategoryController', function ($scope, $routeParams) {
-    var productsByCategory = {
-        Milk: [
-            {manufacturer: 'Tine', category: 'Milk', name: 'Melk'}
-        ],
-        'Chocolate milk': [
-            {manufacturer: 'Tine', category: 'Chocolate milk', name: 'Sjokkomelk'},
-            {manufacturer: 'Q', category: 'Chocolate milk', name: 'Jens'}
-        ]
-    };
-
-    $scope.category = {
-        name: $routeParams.name,
-        products: productsByCategory[$routeParams.name] || []
-    };
+app.controller('CategoryController', function ($scope, $routeParams, CategoriesService) {
+    CategoriesService.get($routeParams.name).success(function(category) {
+        $scope.category = category;
+    });
 });
-
 
 app.controller('ManufacturerController', function ($scope, $routeParams) {
     var categoriesByManufacturer = {

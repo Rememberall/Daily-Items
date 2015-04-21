@@ -27,4 +27,12 @@ router.delete('/:id', function (req, res, next) {
     });
 });
 
+router.get('/:name', function (req, res, next) {
+    Category.findOne({name: req.params.name}, function (err, category) {
+        if (err) return next(err);
+        if (!category) return res.status(404).send('No such category');
+        return res.json(category);
+    });
+});
+
 module.exports = router;
