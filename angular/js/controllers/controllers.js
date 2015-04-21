@@ -18,9 +18,8 @@ app.config(function ($routeProvider) {
 });
 
 app.controller('ApplicationController', function ($scope, $http) {
-    $scope.language = localStorage.language || 'no';
-
     $http.get('/strings.json').success(function (strings) {
+        $scope.language = localStorage.language || 'no';
         $scope.string = function (key) {
             var stringsByKey = strings[key] || [];
             return stringsByKey[$scope.language] || 'Unknown';
@@ -29,7 +28,7 @@ app.controller('ApplicationController', function ($scope, $http) {
 
     $scope.setLanguage = function (newLanguage) {
         $scope.language = localStorage.language = newLanguage;
-    }
+    };
 });
 
 app.controller('HomeController', function ($scope) {
@@ -57,21 +56,44 @@ app.controller('NewProductController', function ($scope, $routeParams) {
     };
 });
 
-app.controller('CategoriesController', function ($scope) {
-    $scope.categories = [
-        'Milk',
-        'Chocolate milk',
-        'Soda'
-    ];
+app.controller('CategoriesController', function ($scope, CategoriesService) {
+    CategoriesService.query().success(function (categories) {
+        $scope.categories = categories;
+    });
+
+    $scope.remove = function (id) {
+        CategoriesService.remove(id).success(function () {
+            _.remove($scope.categories, {_id: id});
+        });
+    };
 });
 
-app.controller('NewCategoryController', function ($scope, $routeParams) {
+app.service('CategoriesService', function ($http) {
+    var resource = '/api/categories';
+
+    this.query = function () {
+        return $http.get(resource);
+    };
+
+    this.save = function (category) {
+        return $http.post(resource, category);
+    };
+
+    this.remove = function (id) {
+        return $http.delete(resource + '/' + id);
+    };
+});
+
+app.controller('NewCategoryController', function ($scope, $routeParams, $location, CategoriesService) {
     $scope.newCategory = {
         name: $routeParams.name
     };
 
     $scope.save = function () {
-        throw 'Not implemented';
+        CategoriesService.save($scope.newCategory).success(function () {
+            $scope.newCategory = {};
+            $location.path('/categories');
+        });
     };
 });
 

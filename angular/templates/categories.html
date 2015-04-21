@@ -5,11 +5,20 @@
     <input id="searchInput" type="text" class="form-control" ng-model="searchFilter"/>
 </div>
 
-<ul ng-repeat="category in categories">
-    <li>
-        <a href="/#/categories/{{category}}">{{category}}</a>
-    </li>
-</ul>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    <tr ng-repeat="category in categories | filter: searchFilter">
+        <td>
+            <a href="/#/categories/{{category.name}}">{{category.name}}</a>
+        </td>
+        <td>
+            <button class="btn btn-danger" ng-click="remove(category._id)">{{string('remove')}}</button>
+        </td>
+    </tr>
+</table>
 
-<p ng-if="categories.length === 0">No categories!</p>
-<a href="/#/categories/new">{{string('add_one')}}</a>
+<p ng-if="categories.length === 0">{{string('no_categories')}}!</p>
+<a href="/#/categories/new">{{string('add_category')}}</a>

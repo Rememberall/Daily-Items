@@ -23,9 +23,9 @@
     "no": "Lagre",
     "en": "Save"
   },
-  "delete": {
-    "no": "Slett",
-    "en": "Delete"
+  "remove": {
+    "no": "Fjern",
+    "en": "Remove"
   },
   "update": {
     "no": "Oppdater",
@@ -59,10 +59,6 @@
     "no": "Søk i kategorier",
     "en": "Search categories"
   },
-  "add_one": {
-    "no": "Legg til en ny",
-    "en": "Add one"
-  },
   "new_category": {
     "no": "Ny kategori",
     "en": "New category"
@@ -74,5 +70,33 @@
   "home": {
     "no": "Hjem",
     "en": "Home"
+  },
+  "add_product": {
+    "no": "Legg til et nytt produkt",
+    "en": "Add a new product"
+  },
+  "new_product": {
+    "no": "Nytt produkt",
+    "en": "New product"
+  },
+  "no_products_in_this_category": {
+    "no": "Ingen produkter i denne kategorien",
+    "en": "No products in this category!"
+  },
+  "products": {
+    "no": "Produkter",
+    "en": "Products"
+  },
+  "add_product_to_category": {
+    "no": "Legg til et nytt produkt i denne kategorien",
+    "en": "Add a new product of this category"
+  },
+  "add_category": {
+    "no": "Legg til en ny kategori",
+    "en": "Add a new category"
+  },
+  "no_categories": {
+    "no": "Ingen kategorier",
+    "en": "No categories"
   }
 }

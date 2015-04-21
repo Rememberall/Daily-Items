@@ -1,11 +1,11 @@
-<h1>Category {{category.name}}</h1>
+<h1>{{string('category')}} {{category.name}}</h1>
 
-<h2>Products</h2>
+<h2>{{string('products')}}</h2>
 <ul ng-repeat="product in category.products">
     <li>{{product.name}}</li>
 </ul>
 
 <span ng-if="category.products.length === 0">
-    <p>No products in this category!</p>
+    <p>{{string('no_products_in_this_category')}}!</p>
 </span>
-<a href="/#/products/new?category={{category.name}}">Add one</a>
+<a href="/#/products/new?category={{category.name}}">{{string('add_product_to_category')}}</a>

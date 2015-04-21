@@ -1,13 +1,13 @@
-<h1>New product</h1>
+<h1>{{string('new_product')}}</h1>
 
 <form ng-submit="save">
     <div class="form-group">
-        <label for="nameInput">Name</label>
-        <input id="nameInput" type="text" class="form-control" placeholder="Name" ng-model="newProduct.name"/>
+        <label for="nameInput">{{string('name')}}</label>
+        <input id="nameInput" type="text" class="form-control" placeholder="{{string('name')}}" ng-model="newProduct.name"/>
     </div>
     <div class="form-group">
-        <label for="categoryInput">Category</label>
-        <input id="categoryInput" type="text" class="form-control" placeholder="Category" ng-model="newProduct.category"/>
+        <label for="categoryInput">{{string('category')}}</label>
+        <input id="categoryInput" type="text" class="form-control" placeholder="{{string('category')}}" ng-model="newProduct.category"/>
     </div>
-    <button class="btn btn-primary">Save</button>
+    <button class="btn btn-primary">{{string('save')}}</button>
 </form>
