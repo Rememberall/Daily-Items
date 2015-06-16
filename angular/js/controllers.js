@@ -95,10 +95,20 @@ app.service('BrandsService', function ($http) {
     };
 });
 
-app.controller('ItemsController', function($scope, ItemsService) {
+app.controller('ItemsController', function($scope, ItemsService, CategoriesService, BrandsService) {
     ItemsService.query()
         .success(function (items) {
             $scope.items = items;
+        });
+
+    CategoriesService.query()
+        .success(function(categories) {
+            $scope.categories = categories;
+        });
+
+    BrandsService.query()
+        .success(function(brands) {
+            $scope.brands = brands;
         });
 
     $scope.newItem = {};

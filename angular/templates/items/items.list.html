@@ -5,10 +5,12 @@
         <input type="text" class="form-control" placeholder="Name" ng-model="newItem.name"/>
     </div>
     <div class="input-group">
-        <input type="text" class="form-control" placeholder="Category" ng-model="newItem.category"/>
+        <input type="text" class="form-control" placeholder="Category" ng-model="newItem.category"
+               typeahead="category.name for category in categories | orderBy: 'name' | filter: $viewValue | limitTo: 8"/>
     </div>
     <div class="input-group">
-        <input type="text" class="form-control" placeholder="Brand" ng-model="newItem.brand"/>
+        <input type="text" class="form-control" placeholder="Brand" ng-model="newItem.brand"
+                typeahead="brand.name for brand in brands | orderBy: 'name' | filter: $viewValue | limitTo: 8"/>
     </div>
     <button class="btn btn-primary">Create</button>
 </form>
