@@ -1,0 +1,37 @@
+<h1>Items</h1>
+
+<form class="form-inline" ng-submit="create()">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Name" ng-model="newItem.name"/>
+    </div>
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Category" ng-model="newItem.category"/>
+    </div>
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Brand" ng-model="newItem.brand"/>
+    </div>
+    <button class="btn btn-primary">Create</button>
+</form>
+<div class="container-fluid content-list">
+    <div class="row">
+        <div class="col-xs-5"><b>Name</b></div>
+        <div class="col-xs-2"><b>Category</b></div>
+        <div class="col-xs-2"><b>Brand</b></div>
+        <div class="col-xs-2"><b>Actions</b></div>
+    </div>
+    <div class="row" ng-repeat="item in items">
+        <div class="col-xs-5">
+            {{item.name}}
+        </div>
+        <div class="col-xs-2">
+            {{item.category}}
+        </div>
+        <div class="col-xs-2">
+            {{item.brand}}
+        </div>
+        <div class="col-xs-2">
+            <button class="btn btn-danger" ng-click="delete(item._id)">Delete</button>
+        </div>
+    </div>
+</div>
+<p ng-if="items.length === 0">No items yet! You can add one.</p>

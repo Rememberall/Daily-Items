@@ -86,12 +86,57 @@ app.service('BrandsService', function ($http) {
         return $http.get('/api/brands');
     };
 
-    context.create = function (category) {
-        return $http.post('/api/brands', category);
+    context.create = function (brand) {
+        return $http.post('/api/brands', brand);
     };
 
     context.delete = function (id) {
         return $http.delete('/api/brands/' + id);
+    };
+});
+
+app.controller('ItemsController', function($scope, ItemsService) {
+    ItemsService.query()
+        .success(function (items) {
+            $scope.items = items;
+        });
+
+    $scope.newItem = {};
+
+    $scope.create = function () {
+        if (!$scope.newItem.name || !$scope.newItem.category || !$scope.newItem.brand) {
+            console.log('Enter a name and category and brand, idiot');
+            return;
+        }
+
+        ItemsService.create($scope.newItem)
+            .success(function (newItem) {
+                $scope.items.unshift(newItem);
+                $scope.newItem = {};
+            });
+    };
+
+    $scope.delete = function (id) {
+        ItemsService.delete(id)
+            .success(function () {
+                _.remove($scope.items, {_id: id});
+            });
+    };
+});
+
+app.service('ItemsService', function ($http) {
+    var context = this;
+
+    context.query = function () {
+        return $http.get('/api/items');
+    };
+
+    context.create = function (item) {
+        return $http.post('/api/items', item);
+    };
+
+    context.delete = function (id) {
+        return $http.delete('/api/items/' + id);
     };
 });
 
