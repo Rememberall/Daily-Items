@@ -1,5 +1,10 @@
 var app = angular.module('dailyItems');
 
+app.controller('HomeController', function($scope) {
+    $scope.title = 'Daily Items';
+    $scope.message = 'Welcome to daily.rememberall.io! This app lets you keep track over which daily items you have and need.';
+});
+
 app.controller('CategoriesController', function ($scope, CategoriesService) {
     CategoriesService.query()
         .success(function (categories) {
