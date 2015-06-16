@@ -10,5 +10,5 @@ app.config(function ($routeProvider) {
 });
 
 app.config(function ($locationProvider) {
-    $locationProvider.html5Mode();
+    $locationProvider.html5Mode(true);
 });
