@@ -1,0 +1,8 @@
+{
+  "name": "daily-items",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-livereload": "^3.8.0",
+    "gulp-nodemon": "^2.0.3"
+  }
+}

@@ -1,0 +1,19 @@
+<h1>Categories</h1>
+
+<form class="form-inline" ng-submit="create()">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Name" ng-model="newCategory.name"/>
+    </div>
+    <button class="btn btn-primary">Create</button>
+</form>
+<div class="container-fluid content-list">
+    <div class="row" ng-repeat="category in categories">
+        <div class="col-xs-5">
+            {{category.name}}
+        </div>
+        <div class="col-xs-7">
+            <button class="btn btn-danger" ng-click="delete(category._id)">Delete</button>
+        </div>
+    </div>
+</div>
+<p ng-if="categories.length === 0">No categories yet! You can add one.</p>

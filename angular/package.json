@@ -1,0 +1,9 @@
+{
+  "name": "daily-items-angular",
+  "dependencies": {
+    "angular": "^1.4.1",
+    "angular-route": "^1.4.1",
+    "bootstrap": "^3.3.5",
+    "lodash": "^3.9.3"
+  }
+}
