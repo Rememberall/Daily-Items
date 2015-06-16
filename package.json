@@ -1,5 +1,9 @@
 {
   "name": "daily-items",
+  "scripts": {
+    "postinstall": "cd ./angular && npm install && cd ../node && npm install",
+    "start": "node ./node/index.js"
+  },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-livereload": "^3.8.0",
