@@ -1,0 +1,19 @@
+<h1>Brands</h1>
+
+<form class="form-inline" ng-submit="create()">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Name" ng-model="newBrand.name"/>
+    </div>
+    <button class="btn btn-primary">Create</button>
+</form>
+<div class="container-fluid content-list">
+    <div class="row" ng-repeat="brand in brands">
+        <div class="col-xs-5">
+            {{brand.name}}
+        </div>
+        <div class="col-xs-7">
+            <button class="btn btn-danger" ng-click="delete(brand._id)">Delete</button>
+        </div>
+    </div>
+</div>
+<p ng-if="brands.length === 0">No brands yet! You can add one.</p>

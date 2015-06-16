@@ -42,7 +42,52 @@ app.service('CategoriesService', function ($http) {
 
     context.delete = function (id) {
         return $http.delete('/api/categories/' + id);
-    }
+    };
+});
+
+app.controller('BrandsController', function($scope, BrandsService) {
+    BrandsService.query()
+        .success(function (brands) {
+            $scope.brands = brands;
+        });
+
+    $scope.newBrand = {};
+
+    $scope.create = function () {
+        if (!$scope.newBrand.name) {
+            console.log('Enter a name, idiot');
+            return;
+        }
+
+        BrandsService.create($scope.newBrand)
+            .success(function (newBrand) {
+                $scope.brands.unshift(newBrand);
+                $scope.newBrand = {};
+            });
+    };
+
+    $scope.delete = function (id) {
+        BrandsService.delete(id)
+            .success(function () {
+                _.remove($scope.brands, {_id: id});
+            });
+    };
+});
+
+app.service('BrandsService', function ($http) {
+    var context = this;
+
+    context.query = function () {
+        return $http.get('/api/brands');
+    };
+
+    context.create = function (category) {
+        return $http.post('/api/brands', category);
+    };
+
+    context.delete = function (id) {
+        return $http.delete('/api/brands/' + id);
+    };
 });
 
 app.controller('NotFoundController', function ($scope) {

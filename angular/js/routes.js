@@ -6,6 +6,10 @@ app.config(function ($routeProvider) {
             controller: 'CategoriesController',
             templateUrl: '/templates/categories/categories.list.html'
         })
+        .when('/brands', {
+            controller: 'BrandsController',
+            templateUrl: '/templates/brands/brands.list.html'
+        })
         .otherwise({controller: 'NotFoundController', templateUrl: '/templates/not_found.html'});
 });
 
