@@ -2,7 +2,7 @@ var app = angular.module('dailyItems');
 
 app.config(function ($routeProvider) {
     $routeProvider
-        .when('/',{
+        .when('/', {
             controller: 'HomeController',
             templateUrl: '/templates/home.html'
         })

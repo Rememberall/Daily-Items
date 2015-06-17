@@ -1,6 +1,6 @@
 var app = angular.module('dailyItems');
 
-app.controller('HomeController', function($scope) {
+app.controller('HomeController', function ($scope) {
     $scope.title = 'Daily Items';
     $scope.message = 'Welcome to daily.rememberall.io! This app lets you keep track over which daily items you have and need.';
 });
@@ -50,7 +50,7 @@ app.service('CategoriesService', function ($http) {
     };
 });
 
-app.controller('BrandsController', function($scope, BrandsService) {
+app.controller('BrandsController', function ($scope, BrandsService) {
     BrandsService.query()
         .success(function (brands) {
             $scope.brands = brands;
@@ -95,19 +95,19 @@ app.service('BrandsService', function ($http) {
     };
 });
 
-app.controller('ItemsController', function($scope, ItemsService, CategoriesService, BrandsService) {
+app.controller('ItemsController', function ($scope, ItemsService, CategoriesService, BrandsService) {
     ItemsService.query()
         .success(function (items) {
             $scope.items = items;
         });
 
     CategoriesService.query()
-        .success(function(categories) {
+        .success(function (categories) {
             $scope.categories = categories;
         });
 
     BrandsService.query()
-        .success(function(brands) {
+        .success(function (brands) {
             $scope.brands = brands;
         });
 

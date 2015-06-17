@@ -12,7 +12,7 @@ gulp.task('html', function () {
         .pipe(livereload());
 });
 
-gulp.task('style', function() {
+gulp.task('style', function () {
     gulp.src('./angular/style/**/*.css')
         .pipe(livereload());
 });
