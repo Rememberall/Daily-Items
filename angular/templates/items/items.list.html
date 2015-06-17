@@ -34,7 +34,9 @@
             {{item.brand}}
         </div>
         <div class="col-xs-2">
-            <button class="btn btn-danger" ng-click="delete(item._id)">Delete</button>
+            <span id="admin-controls" ng-if="currentUser.role === 'admin'">
+                <button class="btn btn-danger" ng-click="delete(item._id)">Delete</button>
+            </span>
         </div>
     </div>
 </div>

@@ -18,7 +18,9 @@
             {{brand.name}}
         </div>
         <div class="col-xs-7">
-            <button class="btn btn-danger" ng-click="delete(brand._id)">Delete</button>
+            <span id="admin-controls" ng-if="currentUser.role === 'admin'">
+                <button class="btn btn-danger" ng-click="delete(brand._id)">Delete</button>
+            </span>
         </div>
     </div>
 </div>
