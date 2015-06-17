@@ -23,7 +23,7 @@ router.post('/', function (req, res) {
     Brand.findOne({nameLowercase: newBrand.nameLowercase}, function (err, collision) {
         if (collision) {
             console.log('collision', collision);
-            return res.status(412).send('A brand with the name "' + newBrand.name + '" already exists.');
+            return res.status(412).send('A brand with the name "' + collision.name + '" already exists.');
         }
 
         newBrand.save(function () {

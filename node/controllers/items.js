@@ -23,7 +23,7 @@ router.post('/', function (req, res) {
     Item.findOne({nameLowercase: newItem.nameLowercase}, function (err, collision) {
         if (collision) {
             console.log('collision', collision);
-            return res.status(412).send('An item with the name "' + newItem.nameLowercase + '" already exists.');
+            return res.status(412).send('An item with the name "' + collision.name + '" already exists.');
         }
 
         newItem.save(function () {
