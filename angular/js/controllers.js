@@ -23,6 +23,9 @@ app.controller('CategoriesController', function ($scope, CategoriesService) {
             .success(function (newCategory) {
                 $scope.categories.unshift(newCategory);
                 $scope.newCategory = {};
+            })
+            .error(function (message) {
+                alert(message);
             });
     };
 
@@ -68,6 +71,9 @@ app.controller('BrandsController', function ($scope, BrandsService) {
             .success(function (newBrand) {
                 $scope.brands.unshift(newBrand);
                 $scope.newBrand = {};
+            })
+            .error(function (message) {
+                alert(message);
             });
     };
 
@@ -123,6 +129,9 @@ app.controller('ItemsController', function ($scope, ItemsService, CategoriesServ
             .success(function (newItem) {
                 $scope.items.unshift(newItem);
                 $scope.newItem = {};
+            })
+            .error(function (message) {
+                alert(message);
             });
     };
 

@@ -13,8 +13,22 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     var newBrand = new Brand(req.body);
 
-    newBrand.save(function () {
-        return res.status(201).send(newBrand);
+    if (!newBrand.name) {
+        return res.status(400).send('New brand must contain {name}');
+    }
+
+    newBrand.nameLowercase = newBrand.name.toLowerCase();
+
+    // see if it exists
+    Brand.findOne({nameLowercase: newBrand.nameLowercase}, function (err, collision) {
+        if (collision) {
+            console.log('collision', collision);
+            return res.status(412).send('A brand with the name "' + newBrand.name + '" already exists.');
+        }
+
+        newBrand.save(function () {
+            return res.status(201).send(newBrand);
+        });
     });
 });
 

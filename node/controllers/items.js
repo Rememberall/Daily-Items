@@ -14,11 +14,21 @@ router.post('/', function (req, res) {
     var newItem = new Item(req.body);
 
     if (!newItem.name || !newItem.category || !newItem.brand) {
-        return res.status(400).send('New item must contain {name, category}');
+        return res.status(400).send('New item must contain {name, category, brand}');
     }
 
-    newItem.save(function () {
-        return res.status(201).send(newItem);
+    newItem.nameLowercase = newItem.name.toLowerCase();
+
+    // see if it exists
+    Item.findOne({nameLowercase: newItem.nameLowercase}, function (err, collision) {
+        if (collision) {
+            console.log('collision', collision);
+            return res.status(412).send('An item with the name "' + newItem.nameLowercase + '" already exists.');
+        }
+
+        newItem.save(function () {
+            return res.status(201).send(newItem);
+        });
     });
 });
 
