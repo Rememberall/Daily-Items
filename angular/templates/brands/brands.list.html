@@ -1,6 +1,6 @@
 <h1>Brands</h1>
 
-<form class="form-inline" ng-submit="create()">
+<form ng-if="currentUser.role === 'admin'" class="form-inline" ng-submit="create()">
     <div class="input-group">
         <input type="text" class="form-control" placeholder="Name" ng-model="newBrand.name"/>
     </div>

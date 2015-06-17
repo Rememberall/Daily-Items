@@ -247,9 +247,6 @@ app.service('SessionsService', function ($http) {
                 var token = response.token;
                 localStorage.token = token;
                 $http.defaults.headers.common['x-auth'] = token;
-            })
-            .error(function (message) {
-                alert(message);
             });
     };
 
