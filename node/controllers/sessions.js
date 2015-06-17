@@ -2,6 +2,7 @@ var router = require('express').Router();
 var bcrypt = require('bcrypt');
 var jwt = require('jwt-simple');
 
+var accessLevels = require('../access-levels');
 var jwtSecret = require('../secrets').jwt;
 var User = require('../models/user');
 
@@ -34,14 +35,11 @@ router.post('/', function (req, res) {
 });
 
 router.get('/refresh', function (req, res) {
-    var token = req.header('x-auth');
-    if (!token) {
+    if (req.accessLevel === accessLevels.unauthorized) {
         return res.sendStatus(401);
     }
 
-    var tokenUser = jwt.decode(token, jwtSecret);
-
-    User.findOne({email: tokenUser.email}, function (err, user) {
+    User.findOne({email: req.user.email}, function (err, user) {
         return res.json(user);
     });
 });

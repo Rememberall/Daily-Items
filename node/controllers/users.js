@@ -1,20 +1,11 @@
 var router = require('express').Router();
 var bcrypt = require('bcrypt');
-var jwt = require('jwt-simple');
 
-var jwtSecret = require('../secrets').jwt;
+var accessLevels = require('../access-levels');
 var User = require('../models/user');
 
 router.get('/', function (req, res) {
-    var token = req.header('x-auth');
-
-    if (!token) {
-        return res.sendStatus(401);
-    }
-
-    var tokenUser = jwt.decode(token, jwtSecret);
-
-    if (tokenUser.role !== 'admin') {
+    if (req.accessLevel < accessLevels.admin) {
         return res.sendStatus(401);
     }
 

@@ -1,5 +1,6 @@
 var router = require('express').Router();
 
+var accessLevels = require('../access-levels');
 var Brand = require('../models/brand');
 
 router.get('/', function (req, res) {
@@ -11,6 +12,10 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
+    if (req.accessLevel < accessLevels.admin) {
+        return res.sendStatus(401);
+    }
+
     var newBrand = new Brand(req.body);
 
     if (!newBrand.name) {
@@ -32,6 +37,10 @@ router.post('/', function (req, res) {
 });
 
 router.delete('/:id', function (req, res) {
+    if (req.accessLevel < accessLevels.admin) {
+        return res.sendStatus(401);
+    }
+
     Brand.findByIdAndRemove(req.params.id, function () {
         return res.status(200).send();
     });

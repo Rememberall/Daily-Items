@@ -1,5 +1,6 @@
 var router = require('express').Router();
 
+var accessLevels = require('../access-levels');
 var Category = require('../models/category');
 
 router.get('/', function (req, res) {
@@ -11,6 +12,10 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
+    if (req.accessLevel < accessLevels.admin) {
+        return res.sendStatus(401);
+    }
+
     var newCategory = new Category(req.body);
 
     if (!newCategory.name) {
@@ -33,6 +38,10 @@ router.post('/', function (req, res) {
 });
 
 router.delete('/:id', function (req, res) {
+    if (req.accessLevel < accessLevels.admin) {
+        return res.sendStatus(401);
+    }
+
     Category.findByIdAndRemove(req.params.id, function () {
         return res.status(200).send();
     });

@@ -33,6 +33,9 @@ app.controller('CategoriesController', function ($scope, CategoriesService) {
         CategoriesService.delete(id)
             .success(function () {
                 _.remove($scope.categories, {_id: id});
+            })
+            .error(function (message) {
+                alert(message);
             });
     };
 });
@@ -81,6 +84,9 @@ app.controller('BrandsController', function ($scope, BrandsService) {
         BrandsService.delete(id)
             .success(function () {
                 _.remove($scope.brands, {_id: id});
+            })
+            .error(function (message) {
+                alert(message);
             });
     };
 });
@@ -139,6 +145,9 @@ app.controller('ItemsController', function ($scope, ItemsService, CategoriesServ
         ItemsService.delete(id)
             .success(function () {
                 _.remove($scope.items, {_id: id});
+            })
+            .error(function (message) {
+                alert(message);
             });
     };
 });
@@ -227,7 +236,7 @@ app.service('UsersService', function ($http) {
 app.service('SessionsService', function ($http) {
     var context = this;
 
-    context.refresh = function() {
+    context.refresh = function () {
         $http.defaults.headers.common['x-auth'] = localStorage.token;
         return $http.get('/api/sessions/refresh');
     };
@@ -238,6 +247,9 @@ app.service('SessionsService', function ($http) {
                 var token = response.token;
                 localStorage.token = token;
                 $http.defaults.headers.common['x-auth'] = token;
+            })
+            .error(function (message) {
+                alert(message);
             });
     };
 
@@ -261,6 +273,9 @@ app.controller('ApplicationController', function ($scope, $location, SessionsSer
         SessionsService.refresh()
             .success(function (user) {
                 $scope.currentUser = user;
+            })
+            .error(function (message) {
+                alert(message);
             });
     }
 
