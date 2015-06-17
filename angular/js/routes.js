@@ -6,6 +6,14 @@ app.config(function ($routeProvider) {
             controller: 'HomeController',
             templateUrl: '/templates/home.html'
         })
+        .when('/login', {
+            controller: 'LoginController',
+            templateUrl: '/templates/users/login.html'
+        })
+        .when('/register', {
+            controller: 'RegisterController',
+            templateUrl: '/templates/users/register.html'
+        })
         .when('/categories', {
             controller: 'CategoriesController',
             templateUrl: '/templates/categories/categories.list.html'
@@ -17,6 +25,10 @@ app.config(function ($routeProvider) {
         .when('/items', {
             controller: 'ItemsController',
             templateUrl: '/templates/items/items.list.html'
+        })
+        .when('/users', {
+            controller: 'UsersController',
+            templateUrl: '/templates/users/users.list.html'
         })
         .otherwise({controller: 'NotFoundController', templateUrl: '/templates/not_found.html'});
 });

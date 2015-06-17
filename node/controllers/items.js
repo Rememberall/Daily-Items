@@ -22,7 +22,6 @@ router.post('/', function (req, res) {
     // see if it exists
     Item.findOne({nameLowercase: newItem.nameLowercase}, function (err, collision) {
         if (collision) {
-            console.log('collision', collision);
             return res.status(412).send('An item with the name "' + collision.name + '" already exists.');
         }
 

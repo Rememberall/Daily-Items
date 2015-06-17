@@ -22,7 +22,6 @@ router.post('/', function (req, res) {
     // see if it exists
     Category.findOne({nameLowercase: newCategory.nameLowercase}, function (err, collision) {
         if (collision) {
-            console.log('collision', collision);
             return res.status(412).send('A category with the name "' + collision.name + '" already exists.');
         }
 

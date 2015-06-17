@@ -15,7 +15,17 @@
             <li class="nav navbar-nav"><a href="/#/categories">Categories</a></li>
             <li class="nav navbar-nav"><a href="/#/brands">Brands</a></li>
             <li class="nav navbar-nav"><a href="/#/items">Items</a></li>
+            <li ng-if="currentUser.role === 'admin'" class="nav navbar-nav"><a href="/#/users">Users</a></li>
         </ul>
+        <ul ng-if="!currentUser" class="nav navbar-nav navbar-right">
+            <li class="nav navbar-nav"><a href="/#/login">Log in</a></li>
+            <li class="nav navbar-nav"><a href="/#/register">Register</a></li>
+        </ul>
+        <ul ng-if="currentUser" class="nav navbar-nav navbar-right">
+            <li class="nav navbar-text">Logged in as <b>{{currentUser.email}}</b></li>
+            <li class="nav navbar-nav"><a ng-click="logout()">Log out</a></li>
+        </ul>
+
     </div>
 </nav>
 
