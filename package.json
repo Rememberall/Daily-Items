@@ -2,7 +2,7 @@
   "name": "daily-items",
   "scripts": {
     "postinstall": "cd ./angular && npm install && cd ../node && npm install",
-    "test": "jshint .",
+    "test": "jshint . && mocha -R nyan",
     "start": "node ./node/index.js"
   },
   "devDependencies": {
