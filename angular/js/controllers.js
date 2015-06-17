@@ -198,6 +198,8 @@ app.controller('RegisterController', function ($scope, $location, UsersService, 
 
         UsersService.create($scope.newUser)
             .success(function (user) {
+                console.log('successfully created user', user);
+
                 SessionsService.login($scope.newUser.email, $scope.newUser.password)
                     .error(function (message) {
                         alert(message);

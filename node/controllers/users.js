@@ -21,8 +21,9 @@ router.post('/', function (req, res) {
 
     var user = new User(req.body);
     user.role = 'user';
+    user.emailLowercase = user.email.toLowerCase();
 
-    User.findOne({email: user.email}, function (err, collision) {
+    User.findOne({emailLowercase: user.email.toLowerCase()}, function (err, collision) {
         if (collision) {
             return res.status(412).send('That email address is already taken.');
         }

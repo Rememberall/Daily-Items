@@ -15,7 +15,6 @@ module.exports = function (req, res, next) {
     var predefinedLevel = accessLevels[user.role];
 
     if (!predefinedLevel) {
-        console.log('User', user, 'has unrecognized role', user.role, 'defaulting to unauthorized');
         req.accessLevel = accessLevels.unauthorized;
         return next();
     }
