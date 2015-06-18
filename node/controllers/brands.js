@@ -16,11 +16,16 @@ router.post('/', function (req, res) {
         return res.sendStatus(401);
     }
 
-    var newBrand = new Brand(req.body);
-
-    if (!newBrand.name) {
+    if (!req.body.name) {
         return res.status(400).send('New brand must contain {name}');
     }
+
+    if (typeof req.body.name !== 'string') {
+        return res.status(400).send('Brand name must be string.');
+    }
+
+    var newBrand = new Brand(req.body);
+
 
     newBrand.nameLowercase = newBrand.name.toLowerCase();
 
@@ -41,8 +46,18 @@ router.delete('/:id', function (req, res) {
         return res.sendStatus(401);
     }
 
-    Brand.findByIdAndRemove(req.params.id, function () {
-        return res.status(200).send();
+    if (!/^[0-9a-fA-F]{24}$/.test(req.params.id)) {
+        return res.status(400).send('id must be a valid ObjectId.');
+    }
+
+    Brand.findById(req.params.id, function (err, brand) {
+        if (!brand) {
+            return res.status(404).send('No such brand was found.');
+        }
+
+        brand.remove(function() {
+            return res.status(200).send();
+        });
     });
 });
 

@@ -16,11 +16,15 @@ router.post('/', function (req, res) {
         return res.sendStatus(401);
     }
 
-    var newCategory = new Category(req.body);
-
-    if (!newCategory.name) {
+    if (!req.body.name) {
         return res.status(400).send('New category must contain {name}');
     }
+
+    if (typeof req.body.name !== 'string') {
+        return res.status(400).send('Category name must be string');
+    }
+
+    var newCategory = new Category(req.body);
 
     newCategory.nameLowercase = newCategory.name.toLowerCase();
 
