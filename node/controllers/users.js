@@ -19,6 +19,10 @@ router.post('/', function (req, res) {
         return res.status(400).send('User must contain {email, password}');
     }
 
+    if (typeof req.body.email !== 'string' || typeof req.body.password !== 'string') {
+        return res.status(400).send('{email, password} must both be strings.');
+    }
+
     var user = new User(req.body);
     user.role = 'user';
     user.emailLowercase = user.email.toLowerCase();
