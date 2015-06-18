@@ -5,38 +5,37 @@ var expect = require('chai').expect;
 var api = require('../support/api');
 var util = require('../support/util');
 
-describe('GET /api/users', function () {
-    it('should give 401 without a token', function (done) {
-        api.get('/api/users')
-            .expect(401, done);
-    });
+describe('collisions', function () {
+    describe('for users', function () {
+        var userToDuplicate;
 
-    it('should give 401 if the user is just a "user"', function (done) {
-        var userRoleToken = jwt.encode({role: 'user'}, jwtSecret);
+        beforeEach(function (done) {
+            var randomEmail = util.guid().toLowerCase();
+            var randomPassword = util.guid().toLowerCase();
 
-        api.get('/api/users')
-            .set('x-auth', userRoleToken)
-            .expect(401, done);
-    });
+            userToDuplicate = {
+                email: randomEmail,
+                password: randomPassword
+            };
 
-    it('should give 401 if the user has an unknown role', function (done) {
-        var unknownRole = util.guid();
-        var unknownRoleToken = jwt.encode({role: unknownRole}, jwtSecret);
+            api.post('/api/users')
+                .send(userToDuplicate)
+                .expect(201, done);
+        });
 
-        api.get('/api/users')
-            .set('x-auth', unknownRoleToken)
-            .expect(401, done);
-    });
+        it('should occur if an email is already registered', function (done) {
+            api.post('/api/users')
+                .send(userToDuplicate)
+                .expect(412, done);
+        });
 
-    it('should give 200 and an array if the user is an "admin"', function (done) {
-        var adminRoleToken = jwt.encode({role: 'admin'}, jwtSecret);
-
-        api.get('/api/users')
-            .set('x-auth', adminRoleToken)
-            .expect(200)
-            .expect(function (users) {
-                expect(users.body).to.be.an('array');
-            })
-            .end(done);
+        it('should occur if an email with different casing is already registered', function (done) {
+            api.post('/api/users')
+                .send({
+                    email: userToDuplicate.email.toUpperCase(),
+                    password: userToDuplicate.password
+                })
+                .expect(412, done);
+        });
     });
 });
