@@ -131,7 +131,7 @@ describe('controllers.brands', function () {
                 .expect(404, done);
         });
 
-        it('should give 404 with "admin" token but badly formatted id', function (done) {
+        it('should give 400 with "admin" token but badly formatted id', function (done) {
             var adminRoleToken = jwt.encode({role: 'admin'}, jwtSecret);
 
             api.delete('/api/brands/' + util.guid())
