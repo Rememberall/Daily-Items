@@ -3,5 +3,6 @@
 <ul class="list-unstyled">
     <li class="list-group-item" ng-repeat="user in users">
         {{user.email}}
+        <button class="btn btn-danger" ng-click="delete(user._id)">Delete</button>
     </li>
 </ul>

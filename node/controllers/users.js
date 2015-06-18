@@ -41,4 +41,24 @@ router.post('/', function (req, res) {
     });
 });
 
+router.delete('/:id', function (req, res) {
+    if (req.accessLevel < accessLevels.admin) {
+        return res.sendStatus(401);
+    }
+
+    if (!/^[0-9a-fA-F]{24}$/.test(req.params.id)) {
+        return res.status(400).send('id must be a valid ObjectId.');
+    }
+
+    User.findById(req.params.id, function (err, user) {
+        if (!user) {
+            return res.status(404).send('No such user was found.');
+        }
+
+        user.remove(function () {
+            return res.json(user);
+        });
+    });
+});
+
 module.exports = router;

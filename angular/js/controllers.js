@@ -221,6 +221,13 @@ app.controller('UsersController', function ($scope, UsersService) {
         .success(function (users) {
             $scope.users = users;
         });
+
+    $scope.delete = function (id) {
+        UsersService.delete(id)
+            .success(function () {
+                _.remove($scope.users, {_id: id});
+            });
+    };
 });
 
 app.service('UsersService', function ($http) {
@@ -232,6 +239,10 @@ app.service('UsersService', function ($http) {
 
     context.query = function () {
         return $http.get('/api/users');
+    };
+
+    context.delete = function (id) {
+        return $http.delete('/api/users/' + id);
     };
 });
 
